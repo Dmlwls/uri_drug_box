@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-12">
+    <h2 class="page-head-line">Your Notification</h2>
+</div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"></div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                            <th>Type</th>
+                            <th>Destination</th>
+                            <th>Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @notifications.each do |notification| %>
+                            <% if current_user.id == notification.user_id%>
+                              <tr>
+                                <% if notification.noti_type == false %>
+                                  <td><%= 'Email' %></td>
+                                <% else%>
+                                  <td><%= 'Phone number' %></td>
+                                <% end %>
+                                <td><%= notification.destination %></td>
+                                <td><%= link_to 'Edit ', edit_notification_path(notification) %>&nbsp;|&nbsp;
+                                <%= link_to 'Delete', notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
+                      </tbody>
+                    </table>
+                </div>
+              <div class="center"><%= link_to 'New Notification', new_notification_path %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+

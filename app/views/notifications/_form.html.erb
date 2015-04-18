@@ -1,0 +1,50 @@
+  <div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"></div>
+            <div class="panel-body">
+              <%= form_for(@notification) do |f| %>
+                <% if @notification.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@notification.errors.count, "error") %> prohibited this notification from being saved:</h2>
+
+                    <ul>
+                    <% @notification.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <div class="field">
+                  <%= f.label 'Which ways do you want to notify you?' %><br>
+                  <%= label_tag("Email")%>
+                  <%= f.radio_button :noti_type, '0', :checked => true  %>
+                  
+                  <%= label_tag("Phone Number") %>
+                  <%= f.radio_button :noti_type, '1' %>
+                  
+                </div>
+                
+                <div class="field">
+                  <%= f.label 'Who do you want to notify to?' %><br>
+                  
+                    <%= f.label 'name:' %>
+
+                    
+                    <% dest_array = current_user.relatives.all.map { |dest| [dest.name, dest.id] } %>
+                    <% dest_array.unshift("Yourself")%>
+
+                    <%= f.select :destination, dest_array , :required => true%>
+                </div>
+
+                <div class = "center" class="actions">
+                  <%= f.submit %>
+                </div>
+                <div class = "center"><%= link_to 'Back', notifications_path %></div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

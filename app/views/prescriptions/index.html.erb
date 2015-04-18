@@ -1,0 +1,38 @@
+    <div class="col-md-12">
+        <h1 class="page-head-line">Prescriptions</h1>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-6">
+      <!--   Kitchen Sink -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                            <th>Title </th>
+                            <th>Options </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <% @prescriptions.each do |prescription| %>
+                          <% if current_user.id == prescription.user_id %>
+                            <tr>
+                              <td><%= prescription.doctor_name %></td>
+                              <td><%= link_to 'Show', prescription %> &nbsp;|&nbsp;
+                              <%= link_to 'Edit', edit_prescription_path(prescription) %> &nbsp;|&nbsp;
+                              <%= link_to 'Delete', prescription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              </tr>
+                          <% end %>
+                        <% end %>
+                        </tbody>
+                    </table>
+              </div>
+              <div class="center"><%= link_to 'New Prescription', new_prescription_path %></div>
+            </div>
+          </div>
+        </div>

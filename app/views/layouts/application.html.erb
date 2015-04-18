@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UriDrugBox</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href="assets/stylesheets/style.css" rel="stylesheet" />
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="navbar navbar-inverse set-radius-zero">
+        <div class="container">
+            <div class="navbar-header float">
+                <% if user_signed_in? and !current_user.profile.blank? %>
+                    <div class="span5 gray"><%=  (' Hello ' + current_user.profile.name)%></div>
+                <% end %>
+                <div class="span5">                    
+                    <% if user_signed_in? %>
+                      <li>
+                      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete , :style=>'color:#BDBDBD;'  %>        
+                      </li>
+                    <% else %>
+                      <li>
+                      <%= link_to 'Sign in', new_user_session_path , :style=>'color:#BDBDBD;' %>  |  <%= link_to 'Sign up', new_user_registration_path , :style=>'color:#BDBDBD;'  %>  
+                      </li>
+                    <% end %>
+                </div> 
+            </div>
+                <div class="right-div navbar-brand">
+                    <img src="/assets/drug_box/logo.gif">
+                </div>   
+        </div>
+    </div>
+    <!-- LOGO HEADER END-->
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a  href="index.html">About us</a></li>
+                            <li><a  href="index.html">Contact us</a></li>
+                            <li><a  href="index.html">Buy Smart pill box</a></li>
+                            <li><%= link_to 'Home Page' , root_path %></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="wrapper">
+        <% if user_signed_in? %>
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <br>
+                    <% if !current_user.profile.blank? %>
+                        <li><%= link_to "Edit Your Profile", edit_profile_path(current_user.profile.id) %></li>
+                        <% if !current_user.relatives.blank? %>
+                            <li><%= link_to "See Your Relatives", relatives_path %></li>
+                        <% else %>
+                            <li><%= link_to "Add Your Relative", new_relative_path %></li>
+                        <% end %>
+                        <li><%= link_to "How To Notify You?", notifications_path %></li>
+                        <li><%= link_to "See Your Prescriptions", prescriptions_path %></li>
+                        <li><%= link_to "Add Drug", new_prow_path %></li>
+                    <% else %>
+                        <li><%= link_to "Add Profile", new_profile_path %></li>
+                    <% end %>
+                    
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+        <% end %>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <%= yield %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+</body>
+</html>

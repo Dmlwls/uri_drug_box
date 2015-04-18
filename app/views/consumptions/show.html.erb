@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @consumption.start_time %>
+</p>
+
+<p>
+  <strong>Take status:</strong>
+  <%= @consumption.take_status %>
+</p>
+
+<p>
+  <strong>Prow:</strong>
+  <%= @consumption.prow_id %>
+</p>
+
+<%= link_to 'Edit', edit_consumption_path(@consumption) %> |
+<%= link_to 'Back', consumptions_path %>

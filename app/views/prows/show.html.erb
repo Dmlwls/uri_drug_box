@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Prescription:</strong>
+  <%= @prow.prescription_id %>
+</p>
+
+<p>
+  <strong>Period:</strong>
+  <%= @prow.period %>
+</p>
+
+<p>
+  <strong>qty:</strong>
+  <%= @prow.qty %>
+</p>
+
+<p>
+  <strong>Drug:</strong>
+  <%= @drug.description %>
+</p>
+
+<%= link_to 'Edit', edit_prow_path(@prow) %> |
+<%= link_to 'Back', prows_path %>

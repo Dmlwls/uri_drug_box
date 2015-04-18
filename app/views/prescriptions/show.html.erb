@@ -1,0 +1,40 @@
+
+    <h1 class="page-head-line">Drugs of <%= @prescription.doctor_name %></h1>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                              <th>Name</th>
+                              <th>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                              <th>Quantity</th>
+                              <th>Period</th>
+                              <th>Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @prescription.prows.each do |prow| %>
+                            <% if current_user.id == @prescription.user_id && prow.prescription_id = @prescription.id%>
+                              <tr>
+                                <td><%= prow.drug.name %></td>
+                                <td><%= prow.drug.description %></td>
+                                <td><%= prow.qty %></td>
+                                <td><%= prow.period %></td>
+                                <td><%= link_to 'Edit ', edit_prow_path(prow) %>&nbsp;|&nbsp;
+                                <%= link_to 'Delete', prow, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
+                      </tbody>
+                    </table>
+                </div>
+              <div class="center"><%= link_to 'Back to see your prescriptions', prescriptions_path %>
+&nbsp;|&nbsp;
+<%= link_to 'Add Drugs',  new_prow_path(:prescription_id => @prescription.id) %>
+<div>
+            </div>

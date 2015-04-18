@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"></div>
+            <div class="panel-body">
+              <%= form_for(@prow) do |f| %>
+                <% if @prow.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@prow.errors.count, "error") %> prohibited this prow from being saved:</h2>
+
+                    <ul>
+                    <% @prow.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <br>
+                <div class="field">
+                  <%= f.label 'Prescription Title:' %>&nbsp;
+                  <%= f.select :prescription_id, current_user.prescriptions.all.collect{|p| [p.doctor_name, p.id]} , :required => true%>
+                </div>
+                <div class="field">
+                    <%= f.label 'drug name:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%=text_field_tag "drug_name" ,nil, :required => true%>
+                </div>
+                <div class="field">
+                    <%= f.label 'drug description:'%>&nbsp;
+                    <%= text_field_tag "drug_description" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label 'period:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= f.text_field :period , :required => true%>
+                </div>
+                <div class="field">
+                  <%= f.label 'quantity:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= f.number_field :qty , min: 1, :required => true  %>
+                </div>
+                <div class = "center" class="actions">
+                  <%= f.submit (f.object.new_record? ? "Create drug" : "Update drug")%>
+                </div><br>
+                <div class = "center"><%= link_to 'Back', prescriptions_path %></div>
+
+              <% end %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

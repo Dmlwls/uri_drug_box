@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prescription_id: 1
+  drug_name: MyString
+  period: MyString
+
+two:
+  prescription_id: 1
+  drug_name: MyString
+  period: MyString

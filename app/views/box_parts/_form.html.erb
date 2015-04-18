@@ -1,0 +1,25 @@
+<%= form_for(@box_part) do |f| %>
+  <% if @box_part.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@box_part.errors.count, "error") %> prohibited this box_part from being saved:</h2>
+
+      <ul>
+      <% @box_part.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :part_num, :required => true %><br>
+    <%= f.text_field :part_num %>
+  </div>
+  <div class="field">
+    <%= f.label :prow_id %><br>
+    <%= f.number_field :prow_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

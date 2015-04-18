@@ -1,0 +1,38 @@
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading"></div>
+        <div class="panel-body">
+          <%= form_for(@relative) do |f| %>
+            <% if @relative.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@relative.errors.count, "error") %> prohibited this relative from being saved:</h2>
+
+                <ul>
+                <% @relative.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="field">
+              <%= f.label 'email:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= f.text_field :email, :required => true %>
+            </div>
+            <div class="field">
+              <%= f.label 'phone number:' %>&nbsp;
+              <%= f.text_field :phone_number , :required => true %>
+            </div>
+            <div class="field">
+              <%= f.label 'name:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= f.text_field :name , :required => true %>
+            </div>
+            <div class="center" class="actions">
+              <%= f.submit %>
+            </div><br>
+            <div class="center"><%= link_to 'Back', relatives_path %></div>
+
+          <% end %>
+    </div>
+  </div>
+</div>

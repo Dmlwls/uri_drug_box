@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+    <h1 class="page-head-line">Your Profile</h1>
+        </div>
+    </div>
+<p>
+  <strong>Name:</strong>
+  <%= @profile.name %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @profile.phone_number %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %>  &nbsp;|&nbsp;
+<%= link_to 'Back', root_path %>
+<br><br>
+<% if current_user.relatives.blank? %>
+	<%= link_to "add your relative", new_relative_path %>
+<% end %>
+

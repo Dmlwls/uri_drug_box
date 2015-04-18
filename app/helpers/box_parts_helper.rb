@@ -1,0 +1,2 @@
+module BoxPartsHelper
+end
