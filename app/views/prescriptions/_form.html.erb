@@ -17,15 +17,15 @@
                 <% end %>
 
                 <div class="field">
-                  <%= f.label "prescription Title:" %>&nbsp;
+                  <%= f.label "عنوان نسخه:" %>&nbsp;
                   <%= f.text_field :doctor_name , :required => true %>
                 </div><br>
                 <div class = "center" class="actions">
-                  <%= f.submit %>
+                  <%= f.submit (f.object.new_record? ? "ایجاد نسخه" : "ویرایش نسخه") ,:class => "btn btn-default"%>
                 </div>
               <% end %>
             </div>
-            <div class = "center"><%= link_to 'Back', prescriptions_path %> </div>
+            <div class = "center"><%= link_to 'بازگشت به صفحه قبلی', prescriptions_path %> </div><br>
           </div>
         </div>
       </div>

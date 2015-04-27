@@ -1,93 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UriDrugBox</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link href="assets/stylesheets/style.css" rel="stylesheet" />
-  <%= csrf_meta_tags %>
+    <title>ظرف داروی هوشمند</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse set-radius-zero">
-        <div class="container">
-            <div class="navbar-header float">
-                <% if user_signed_in? and !current_user.profile.blank? %>
-                    <div class="span5 gray"><%=  (' Hello ' + current_user.profile.name)%></div>
-                <% end %>
-                <div class="span5">                    
+
+</div>
+<div class="page-loader"></div>
+    
+<!-- <div id="page" class="hfeed site"> -->
+    <div class="l-sidebar-left l-header-wrap">
+            <header id="masthead" class="m-site-header" role="banner">
+                <div class="m-site-info">
+                    <img src="/assets/drug_box/logo2.gif">
+                </div>
+                <div class="m-current-user-actions">
                     <% if user_signed_in? %>
-                      <li>
-                      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete , :style=>'color:#BDBDBD;'  %>        
-                      </li>
-                    <% else %>
-                      <li>
-                      <%= link_to 'Sign in', new_user_session_path , :style=>'color:#BDBDBD;' %>  |  <%= link_to 'Sign up', new_user_registration_path , :style=>'color:#BDBDBD;'  %>  
-                      </li>
+                        <ul class="user-actions">
+                            <li><%= link_to "تغییر رمز عبور", edit_user_registration_path %></li>
+                        <% if !current_user.profile.blank? %>
+                            <li><%= link_to "تغییر مشخصات", edit_profile_path(current_user.profile.id) %></li>
+                            <% if !current_user.relatives.blank? %>
+                                <li><%= link_to "نزدیکان شما", relatives_path %></li>
+                            <% else %>
+                                <li><%= link_to "به نزدیکان خود بیافزایید", new_relative_path %></li>
+                            <% end %>
+                            <li><%= link_to "روش یادآوری", notifications_path %></li>
+                            <li><%= link_to "نسخه ها", prescriptions_path %></li>
+                            <li><%= link_to "افزودن دارو", new_prow_path %></li>
+                        <% else %>
+                            <li><%= link_to "افزودن مشخصات", new_profile_path %></li>
+                        <% end %>
+                    </ul>
                     <% end %>
-                </div> 
+                </div>
+                <!-- /#sidebar-wrapper -->
+            </header><!-- #masthead -->
+        </div><!-- header-wrap -->
+    
+        <div class="l-cont-side-wrap">
+            <div class="l-navigation-wrap background-theme-color">
+                    <div class="navbar-collapse collapse navbar-inverse-collapse">
+                        <% if user_signed_in? and !current_user.profile.blank? %>
+                            <div class="span5" style= 'color:#FFF;'><%=  (' سلام' + current_user.profile.name)%></div>
+                        <% end %>
+                        <div class="span5 float">
+                            <% if user_signed_in? %>
+                                <div><%= link_to 'خروج از حساب کاربری', destroy_user_session_path, :method => :delete , :style=>'color:#FFF;'  %></div>
+                            <% else %>
+                                <div><%= link_to 'ورود', new_user_session_path , :style=>'color:#FFF;' %>  |  <%= link_to 'ایجاد حساب کاربری', new_user_registration_path , :style=>'color:#FFF;'  %></div>
+                            <% end %>
+                        </div>
+                        <div class="navbar-collapse collapse navbar-inverse-collapse ">
+                            <ul class="nav navbar-nav">
+                                <li><%= link_to 'صفحه اصلی', root_path%></li>
+                                <li><%= link_to 'خرید ظرف دارو', root_path%></li>
+                                <li><%= link_to 'تماس با ما', root_path%></li>
+                            </ul>
+                        </div><!-- /.nav-collapse -->
+            </div><!-- /.navbar -->
+        </div><!-- l-menu-wrap -->
+    </div>
+    <div class="l-page-wrap">
+        <div class="l-content-wrap">
+            <div class="container">
+                    <%= yield %>
             </div>
-                <div class="right-div navbar-brand">
-                    <img src="/assets/drug_box/logo.gif">
-                </div>   
         </div>
     </div>
-    <!-- LOGO HEADER END-->
-    <section class="menu-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="navbar-collapse collapse ">
-                        <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a  href="index.html">About us</a></li>
-                            <li><a  href="index.html">Contact us</a></li>
-                            <li><a  href="index.html">Buy Smart pill box</a></li>
-                            <li><%= link_to 'Home Page' , root_path %></li>
-
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <div id="wrapper">
-        <% if user_signed_in? %>
-            <!-- Sidebar -->
-            <div id="sidebar-wrapper">
-                <ul class="sidebar-nav">
-                    <br>
-                    <% if !current_user.profile.blank? %>
-                        <li><%= link_to "Edit Your Profile", edit_profile_path(current_user.profile.id) %></li>
-                        <% if !current_user.relatives.blank? %>
-                            <li><%= link_to "See Your Relatives", relatives_path %></li>
-                        <% else %>
-                            <li><%= link_to "Add Your Relative", new_relative_path %></li>
-                        <% end %>
-                        <li><%= link_to "How To Notify You?", notifications_path %></li>
-                        <li><%= link_to "See Your Prescriptions", prescriptions_path %></li>
-                        <li><%= link_to "Add Drug", new_prow_path %></li>
-                    <% else %>
-                        <li><%= link_to "Add Profile", new_profile_path %></li>
-                    <% end %>
-                    
-                </ul>
-            </div>
-            <!-- /#sidebar-wrapper -->
-        <% end %>
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <!-- <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <%= yield %>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+        </div> -->
 
-    </div>
+<!-- </div> -->
+<script type="text/javascript">
+
+jQuery(window).load(function() {
+
+  jQuery('.flexslider').flexslider({
+    animation: "fade",
+    slideshow: false,
+    smoothHeight: false,
+    controlNav: false,
+    prevText: "",
+    nextText: "",
+    directionNav: true,
+    start: function(slider) {
+      slider.removeClass('loading');
+    }
+  });
+
+  jQuery('.flexslider-carousel').flexslider({
+    animation: "slide",
+    slideshow: true,
+    smoothHeight: true,
+    directionNav: true,
+    controlNav: false,
+    prevText: '',
+    nextText: '',
+    itemWidth: 280,
+    itemMargin: 26,
+    minItems: 3,
+    maxItems: 5,
+    move: 3
+  });
+
+  
+});
+</script>
 
 
 </body>

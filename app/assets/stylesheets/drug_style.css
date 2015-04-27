@@ -1,0 +1,28 @@
+body{
+	direction: rtl;
+}
+.center{
+	text-align: center;
+}
+
+li{
+    list-style: none;	
+}
+a{
+    text-decoration: none;
+    color: #333;
+}
+a:hover{
+    text-decoration: none; 
+    background: none;
+    color: #42BBCA;
+}
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: right;
+}
+.float{
+    float:right;
+}
+th , td{
+    text-align: center;
+}

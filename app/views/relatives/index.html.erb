@@ -1,6 +1,4 @@
-    <div class="col-md-12">
-        <h1 class="page-head-line">Relatives</h1>
-    </div>
+<p class="page-head-line">نزدیکان</p>
     <div class="row">
     <div class="col-md-6">
       <!--   Kitchen Sink -->
@@ -11,10 +9,10 @@
                     <table class="table table-striped table-bordered table-hover">
                       <thead>
                           <tr>
-                              <th>Name</th>
-                              <th>Email</th>
-                              <th>Phone number</th>
-                              <th>Options</th>
+                              <th>نام</th>
+                              <th>ایمیل</th>
+                              <th>شماره تماس</th>
+                              <th>گزینه ها</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -24,21 +22,21 @@
                                 <td><%= relative.name %></td>
                                 <td><%= relative.email %></td>
                                 <td><%= relative.phone_number %></td>
-                                <td><%= link_to 'Edit ', edit_relative_path(relative) %>&nbsp;|&nbsp;
-                                <%= link_to 'Delete', relative, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                <td><%= link_to 'ویرایش ', edit_relative_path(relative) %>&nbsp;|&nbsp;
+                                <%= link_to 'حذف', relative, method: :delete, data: { confirm: 'آیا اطمینان دارید؟' } %></td>
                               </tr>
                             <% end %>
                           <% end %>
                       </tbody>
                     </table>
               </div>
-              <div class="center"><%= link_to 'New Relative', new_relative_path %><div>
+              <div class="center"><%= link_to 'افزودن نزدیکان', new_relative_path %><div>
             </div>
           </div>
         </div>
       </div>
        <div><% if current_user.prescriptions.blank? %>
-          <%= link_to "add your prescription", new_prescription_path %>
+          <%= link_to "افزودن نسخه جدید", new_prescription_path %>
         <% end %></div>
     </div>
   </div>

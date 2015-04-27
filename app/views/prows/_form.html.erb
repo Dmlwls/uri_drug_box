@@ -17,30 +17,30 @@
                 <% end %>
                 <br>
                 <div class="field">
-                  <%= f.label 'Prescription Title:' %>&nbsp;
+                  <%= f.label 'عنوان نسخه:' %>&nbsp;
                   <%= f.select :prescription_id, current_user.prescriptions.all.collect{|p| [p.doctor_name, p.id]} , :required => true%>
                 </div>
                 <div class="field">
-                    <%= f.label 'drug name:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= f.label 'نام دارو:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <%=text_field_tag "drug_name" ,nil, :required => true%>
                 </div>
                 <div class="field">
-                    <%= f.label 'drug description:'%>&nbsp;
+                    <%= f.label 'توضیحات دارو:'%>&nbsp;
                     <%= text_field_tag "drug_description" %>
                 </div>
 
                 <div class="field">
-                  <%= f.label 'period:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= f.label 'دوره:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <%= f.text_field :period , :required => true%>
                 </div>
                 <div class="field">
-                  <%= f.label 'quantity:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= f.label 'تعداد:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <%= f.number_field :qty , min: 1, :required => true  %>
                 </div>
                 <div class = "center" class="actions">
-                  <%= f.submit (f.object.new_record? ? "Create drug" : "Update drug")%>
+                  <%= f.submit (f.object.new_record? ? "افزودن" : "Update drug") ,:class => "btn btn-default"%>
                 </div><br>
-                <div class = "center"><%= link_to 'Back', prescriptions_path %></div>
+                <div class = "center"><%= link_to 'بازگشت به صفحه نسخه ها', prescriptions_path %></div>
 
               <% end %>
           </div>

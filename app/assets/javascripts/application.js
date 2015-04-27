@@ -13,5 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
+
+//= require jquery.flexslider
+//= require jquery.isotope.min
+//= require front
+//= require jquery.lazyload.min
+//= require jquery.colorbox-min
+//= require sliders
 //= require_tree .
+

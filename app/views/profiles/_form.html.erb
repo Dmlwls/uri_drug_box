@@ -1,4 +1,3 @@
-  <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading"></div>
@@ -17,17 +16,17 @@
                 <% end %>
 
                 <div class="field">
-                  <%= f.label 'Name:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= f.label 'نام:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <%= f.text_field :name , :required => true %>
                 </div>
                 <div class="field">
-                  <%= f.label 'Phone number:' %>&nbsp;
+                  <%= f.label 'شماره تماس:' %>&nbsp;
                   <%= f.text_field :phone_number , :required => true%>
                 </div> 
-                <div class="center" class="actions">
-                  <%= f.submit %>
+                <div class="center">
+                  <%= f.submit (f.object.new_record? ? "ایجاد پروفایل" : "به روز رسانی پروفایل") ,:class => "btn btn-default"%>
                 </div><br>
-                <div class="center"><%= link_to 'Back', root_path %></div>
+                <div class="center"><%= link_to 'بازگشت به صفحه قبل', root_path %></div>
               <% end %>
             </div>
           </div>

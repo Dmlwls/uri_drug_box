@@ -1,0 +1,111 @@
+/* THEME COLORS */
+
+
+h1.t-site-title a {
+    color: #45B29D;
+}
+
+.t-site-description {
+    color: #828181;
+}
+
+.user-actions li a {
+    background-color: rgba(69, 178, 158, 0.8 );
+}
+
+.user-actions li a:hover {
+    background-color: rgba(69, 178, 158, 0.5 );
+}
+
+a, .meta-separator, a.read-more, .l-slider-wrap .flex-direction-nav a.flex-next:before, .l-slider-wrap .flex-direction-nav a.flex-prev:before, .l-sidebar-widget .social-icons-left a:hover, .l-sidebar-widget .tagcloud a:hover,
+.sidebar-search-button:hover .left-sidebar-icon, .l-sidebar-right a:hover, .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus,
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default, .l-team-member .l-social-icons-builder a:hover,
+.fa-hover a:hover,
+.woocommerce #content input.button:hover, .woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, .woocommerce-page #content input.button:hover, 
+.woocommerce-page #respond input#submit:hover, .woocommerce-page a.button:hover, .woocommerce-page button.button:hover, .woocommerce-page input.button:hover, .woocommerce #content input.button.alt:hover,
+.woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover,
+.woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover, 
+.woocommerce #content .quantity .minus:hover, .woocommerce #content .quantity .plus:hover, .woocommerce .quantity .minus:hover, .woocommerce .quantity .plus:hover,
+.woocommerce-page #content .quantity .minus:hover, .woocommerce-page #content .quantity .plus:hover, .woocommerce-page .quantity .minus:hover, .woocommerce-page .quantity .plus:hover,
+.l-social-icons a:hover, a.slider-read-button:hover, .l-logout-button:hover, .l-post h1 a:hover {
+    color: #45B29D;
+}
+
+a.read-more:hover,  .l-slider-wrap .flex-direction-nav a:hover, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, 
+.pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, input[type="text"]:focus, input[type="search"]:focus, #focusedInput,
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .l-team-member .l-social-icons-builder a:hover, .form-control:focus, .l-projects-categories ul li:hover,
+.woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button,
+.woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .pagination > li > a:hover, .pagination > li > span:hover,
+.pagination > li > a:focus, .pagination > li > span:focus, .m-single-social-buttons a:hover, .l-social-icons-profile a:hover {
+    border: 1px solid #45B29D;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    border-bottom: transparent;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #45B29D;
+}
+
+.background-theme-color, .l-navigation-wrap .background-text-color, .nav .dropdown-menu, ol.flex-control-paging li a.flex-active, ol.flex-control-paging li a:hover, a.read-more:hover,
+.l-slider-wrap .flex-direction-nav a:hover, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, 
+.pagination > .active > span:focus, .l-sidebar-right .tagcloud a:hover, .l-sidebar-right .social-icons-left a:hover, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus,
+.woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, 
+.woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, 
+.woocommerce .woocommerce-info:before, .woocommerce-page .woocommerce-info:before, .pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus,
+.m-single-social-buttons a:hover, .l-social-icons-profile a:hover, .l-sidebar-left {
+    background-color: #45B29D;
+}
+
+.background-text-color, .l-slider-wrap .flex-direction-nav a:hover:before, .l-sidebar-right .tagcloud a:hover, .l-sidebar-right .social-icons-left a:hover {
+    color: #fff;
+}
+
+blockquote {
+    border-right: 5px solid #45B29D;
+    border-left: none;
+    background-color: #FAFAFA;
+}
+
+blockquote.pull-right {
+    border-right: 5px solid #45B29D;
+}
+
+.l-header-wrap {
+    background: url(images/Pills-Dinner-iphone-5s-wallpaper-ilikewallpaper_com.jpg) no-repeat top;
+}
+
+.btn-primary, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus{
+    color: #fff;
+    background-color: #45B29D;
+    border:1px solid #45B29D;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #45B29D;
+    border:1px solid #45B29D;
+}
+
+.l-user-history > ul > li a:hover, .l-user-history > ul > li a.current {
+    border-bottom: 1px solid #45B29D;
+    color: #45B29D;
+}
+
+/* BAR SLIDERS */
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 2px solid #45B29D;
+}
+
+.ui-widget-header {
+    background-color: #45B29D;
+}
+
+/* SLIDER */
+
+.slider-wrapper {
+     background: rgba(69, 178, 158, 0.7);
+}
