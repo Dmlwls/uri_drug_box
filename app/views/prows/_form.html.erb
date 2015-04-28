@@ -17,11 +17,11 @@
                 <% end %>
                 <br>
                 <div class="field">
-                  <%= f.label 'عنوان نسخه:' %>&nbsp;
+                  <%= f.label 'عنوان نسخه:' %>&nbsp;&nbsp;&nbsp;
                   <%= f.select :prescription_id, current_user.prescriptions.all.collect{|p| [p.doctor_name, p.id]} , :required => true%>
                 </div>
                 <div class="field">
-                    <%= f.label 'نام دارو:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= f.label 'نام دارو:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <%=text_field_tag "drug_name" ,nil, :required => true%>
                 </div>
                 <div class="field">
@@ -30,15 +30,17 @@
                 </div>
 
                 <div class="field">
-                  <%= f.label 'دوره:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= f.text_field :period , :required => true%>
+                  <%= f.label 'دوره:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;هر
+                  <%= number_field :period_qty , min: 1, :required => true  %>
+                  <%= f.select :period , options_for_select([["ساعت", "1"],["روز", "2"],["هفته", "3"],["ماه", "4"]]) %>
+                
                 </div>
                 <div class="field">
-                  <%= f.label 'تعداد:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= f.label 'تعداد:'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <%= f.number_field :qty , min: 1, :required => true  %>
                 </div>
                 <div class = "center" class="actions">
-                  <%= f.submit (f.object.new_record? ? "افزودن" : "Update drug") ,:class => "btn btn-default"%>
+                  <%= f.submit (f.object.new_record? ? "افزودن" : "به روز رسانی") ,:class => "btn btn-default"%>
                 </div><br>
                 <div class = "center"><%= link_to 'بازگشت به صفحه نسخه ها', prescriptions_path %></div>
 

@@ -14,7 +14,7 @@ a{
 }
 a:hover{
     text-decoration: none; 
-    background: none;
+    background: transparent;
     color: #42BBCA;
 }
 .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
@@ -26,3 +26,20 @@ a:hover{
 th , td{
     text-align: center;
 }
+.navbar-inverse {
+    border: none;
+    background: none;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #FFF;
+    text-transform: uppercase;
+}
+.navbar-nav > li > a{
+    color: #FFF;
+}
+
+.navbar-nav > li > a:hover {
+    color: #FFF;
+    background-color: #6DBBA0;
+    /*background-color: red; */
+}   
