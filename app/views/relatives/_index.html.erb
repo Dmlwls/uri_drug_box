@@ -1,0 +1,43 @@
+<div class="row">
+  <p class ="m-page-title center_table">نزدیکان</p>
+    <div class="col-md-6 center_table">
+      <!--   Kitchen Sink -->
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                              <th>نام</th>
+                              <th>ایمیل</th>
+                              <th>شماره تماس</th>
+                              <th>گزینه ها</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @relatives.each do |relative| %>
+                            <% if current_user.id == relative.user_id %>
+                              <tr>
+                                <td><%= relative.name %></td>
+                                <td><%= relative.email %></td>
+                                <td><%= relative.phone_number %></td>
+                                <td><%= link_to 'ویرایش ', edit_relative_path(relative, :title => "edit") %>&nbsp;|&nbsp;
+                                <%= link_to 'حذف', relative, method: :delete, data: { confirm: 'آیا اطمینان دارید؟' } %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
+                      </tbody>
+                    </table>
+              </div>
+              <div class="center"><%= link_to 'افزودن نزدیکان', new_relative_path(:title => "new") %><div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div><% if current_user.prescriptions.blank? %>
+          <%= link_to "افزودن نسخه جدید", new_prescription_path %>
+        <% end %></div>
+    </div>
+  </div>
+        

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416133319) do
+ActiveRecord::Schema.define(version: 20150430122752) do
 
   create_table "box_parts", force: :cascade do |t|
     t.string   "part_num"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20150416133319) do
   end
 
   create_table "consumptions", force: :cascade do |t|
-    t.datetime "start_time"
     t.string   "take_status"
     t.integer  "prow_id"
     t.datetime "created_at",  null: false
@@ -66,6 +65,8 @@ ActiveRecord::Schema.define(version: 20150416133319) do
     t.datetime "updated_at",      null: false
     t.integer  "qty"
     t.integer  "drug_id"
+    t.datetime "start_time"
+    t.string   "period_type"
   end
 
   create_table "relatives", force: :cascade do |t|

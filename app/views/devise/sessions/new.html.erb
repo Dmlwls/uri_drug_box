@@ -1,18 +1,17 @@
-  <div class="col-md-6">
-    <p class="page-head-line">ورود به حساب</p>
-
+  <p class ="m-page-title center_table">ورود به حساب کاربری</p>
+      <div class="col-md-6 center_table">
         <div class="panel panel-default">
           <div class="panel-heading"></div>
             <div class="panel-body">
               <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                 
                 <div class="field">
-                  <%= f.label 'ایمیل:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= f.label 'ایمیل :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <%= f.email_field :email, autofocus: true, autocomplete: "on" %>
                 </div>
 
                 <div class="field">
-                  <%= f.label 'رمز عبور:' %>
+                  <%= f.label 'رمز عبور :' %>&nbsp;&nbsp;
                   <%= f.password_field :password, autocomplete: "off" %>
                 </div>
 

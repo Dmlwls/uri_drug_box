@@ -5,6 +5,10 @@ class RelativesController < ApplicationController
   # GET /relatives.json
   def index
     @relatives = Relative.all
+    respond_to do |format|
+      format.html { render '_index.html.erb' }
+      format.js { 'index.js.erb'}
+    end
   end
 
   # GET /relatives/1
@@ -15,10 +19,18 @@ class RelativesController < ApplicationController
   # GET /relatives/new
   def new
     @relative = Relative.new
+    respond_to do |format|
+      format.html { render 'new.html.erb' }
+      format.js { 'new.js.erb'}
+    end
   end
 
   # GET /relatives/1/edit
   def edit
+    respond_to do |format|
+      format.html { render 'edit.html.erb' }
+      format.js { 'edit.js.erb'}
+    end
   end
 
   # POST /relatives

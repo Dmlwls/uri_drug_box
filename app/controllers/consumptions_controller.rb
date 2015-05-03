@@ -21,6 +21,14 @@ class ConsumptionsController < ApplicationController
   def edit
   end
 
+  def remote_consumption 
+    @consumption = Consumption.new
+    @consumption.take_status = params[:ts]
+    @consumption.prow_id = params[:prid]
+    @consumption.save
+    render :layout => false
+  end
+
   # POST /consumptions
   # POST /consumptions.json
   def create

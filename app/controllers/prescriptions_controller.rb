@@ -5,21 +5,37 @@ class PrescriptionsController < ApplicationController
   # GET /prescriptions.json
   def index
     @prescriptions = Prescription.all
+    respond_to do |format|
+      format.html { render '_index.html.erb' }
+      format.js { 'index.js.erb'}
+    end
   end
 
   # GET /prescriptions/1
   # GET /prescriptions/1.json
   def show
     @prow = Prow.new
+    respond_to do |format|
+      format.html { render '_show.html.erb' }
+      format.js { 'show.js.erb'}
+    end
   end
 
   # GET /prescriptions/new
   def new
     @prescription = Prescription.new
+    respond_to do |format|
+      format.html { render 'new.html.erb' }
+      format.js { 'new.js.erb'}
+    end
   end
 
   # GET /prescriptions/1/edit
   def edit
+    respond_to do |format|
+      format.html { render 'edit.html.erb' }
+      format.js { 'edit.js.erb'}
+    end
   end
 
   # POST /prescriptions

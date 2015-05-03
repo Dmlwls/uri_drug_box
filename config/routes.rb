@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'consumptions/remote_consumption/:id' => 'consumptions#remote_consumption'
+  get 'prows/is_near/:id' => 'prows#is_near'
   resources :drugs
 
   devise_for :users

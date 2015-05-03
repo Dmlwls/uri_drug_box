@@ -1,5 +1,11 @@
   <div class="row">
-    <div class="col-md-6">
+  <% if params[:title]== "new" %>
+    <p class ="m-page-title center_table">نسخه جدید</p>
+  <% else %>
+    <p class ="m-page-title center_table">ویرایش نسخه <%= @prescription.doctor_name %></p>
+  <% end %>
+    
+    <div class="col-md-6 center_table">
         <div class="panel panel-default">
           <div class="panel-heading"></div>
             <div class="panel-body">

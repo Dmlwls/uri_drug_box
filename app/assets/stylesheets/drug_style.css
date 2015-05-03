@@ -4,6 +4,11 @@ body{
 .center{
 	text-align: center;
 }
+.left{
+    direction: ltr;
+    text-align: right;
+    display: inline-block;
+}
 
 li{
     list-style: none;	
@@ -36,6 +41,7 @@ th , td{
 }
 .navbar-nav > li > a{
     color: #FFF;
+    font-size: 25px;
 }
 
 .navbar-nav > li > a:hover {
@@ -43,3 +49,13 @@ th , td{
     background-color: #6DBBA0;
     /*background-color: red; */
 }   
+.center_table{
+    margin-right: 110px !important;
+}
+#user ul li a{
+    background-color: #FFFACD !important;
+    font-size: 25px;
+}
+#user{
+    padding-top: 70px;
+}

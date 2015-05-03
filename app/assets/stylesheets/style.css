@@ -34,7 +34,7 @@ input,
 select,
 textarea {
 	color: #828181;
-	font-size: 18px;
+	font-size: 20px !important;
 	/*font-size: 1.6rem;*/
 	line-height: 1.5;
 	font-family: 'Far_Yas';
@@ -679,10 +679,11 @@ h1.t-site-title a {
 
 .user-actions li a {
 	color: #fff;
-	font-size: 1.1em;
+	font-size: 25px;
+	/*font-weight: 700;*/
 	padding: 14px 15px;	
 	width: 100%;
-	background-color: rgba(0,105,92);
+	background-color: rgba(0,150,136,0.8);
 	float: left;
 	margin-bottom: 1px;
 	-webkit-transition: all 0.4s;
@@ -1108,11 +1109,13 @@ h1.t-site-title a {
 /* page content */
 
 .m-page-title {
-	width: 100%;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	margin-bottom: 11px;
+	width: 50%;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+	margin-top: 15px;
+	margin-bottom: 15px;
 	padding: 0 0 10px 0;
-	float: left;
+	float: right;
+	font-size: 25px;
 }
 
 /* flexslider */
