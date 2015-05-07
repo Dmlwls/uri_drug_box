@@ -27,7 +27,8 @@
                     <%= f.select :prescription_id, current_user.prescriptions.all.collect{|p| [p.doctor_name, p.id]} , :required => true%>
                   </div>
                 <% else %>
-                  <% @prow.prescription_id = params[:prid] %>
+                  <% hidden_field_tag :pridset , :value => params[:prid].to_i%>
+                  <%= f.hidden_field :prescription_id , :value => params[:prid].to_i %>
                   <div class="field">
                     <%= f.label 'عنوان نسخه :' %>&nbsp;&nbsp;&nbsp;
                     <%= Prescription.find_by_id(params[:prid]).doctor_name %> 
@@ -35,7 +36,7 @@
                 <% end %>
                 <div class="field">
                     <%= f.label 'نام دارو :'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <%=text_field_tag "drug_name" ,nil, :required => true%>
+                    <%=text_field_tag "drug_name" ,nil , :required => true%>
                 </div>
                 <div class="field">
                     <%= f.label 'توضیحات دارو :'%>&nbsp;
@@ -45,7 +46,7 @@
                 <div class="field">
                     <%= f.label 'ساعت شروع :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div class = "left">
-                    <%=  f.time_select :start_time,:required => true  %>
+                    <%= f.time_select :start_time, :default => Time.now ,:required => true %>
                   </div>
                 </div>
 
@@ -53,7 +54,7 @@
                 <div class="field">
                   <%= f.label 'دوره :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   هر <%= f.number_field :period  ,min:1, :required => true  %>
-                  <%= f.select :period_type , options_for_select([["ساعت", "hour"],["روز", "day"],["هفته", "week"],["ماه", "month"]]) %>
+                  <%= f.select :period_type , options_for_select([["ساعت", "ساعت"],["روز", "روز"],["هفته", "هفته"],["ماه", "ماه"]]) %>
                 
                 </div>
                 <div class="field">
@@ -62,7 +63,7 @@
                 </div>
                 <div class="field">
                   <%= label_tag 'شماره ظرف :'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= number_field_tag :box , min: 1, max: 4, :required => true  %>
+                  <%= number_field_tag :box , input_html: { min: 1, max: 4, :required => true } %>
                 </div>
                 <div class = "center" class="actions">
                   <%= f.submit (f.object.new_record? ? "افزودن" : "به روز رسانی") ,:class => "btn btn-default"%>

@@ -12,6 +12,7 @@
                               <th>توضیحات دارو&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                               <th>تعداد</th>
                               <th>دوره</th>
+                              <th>شماره خانه</th>
                               <th>گزینه ها</th>
                           </tr>
                         </thead>
@@ -22,7 +23,8 @@
                                 <td><%= prow.drug.name %></td>
                                 <td><%= prow.drug.description %></td>
                                 <td><%= prow.qty %></td>
-                                <td><%= prow.period %></td>
+                                <td>هر<%= prow.period %>&nbsp;<%= prow.period_type %>&nbsp;یک بار</td>
+                                <td><%= prow.box_part.part_num %></td>
                                 <td><%= link_to 'ویرایش ', edit_prow_path(prow ,:prid => @prescription.id , :title => "edit") %>&nbsp;|&nbsp;
                                 <%= link_to 'حذف', prow, method: :delete, data: { confirm: 'آیا اطمینان دارید؟' } %></td>
                               </tr>

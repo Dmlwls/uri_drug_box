@@ -37,11 +37,21 @@ class ProwsController < ApplicationController
   def create
     @prow = Prow.new(prow_params)
     # @prescription =  Prescription.find(params[:prescription])  
-    Drug.set_drug(params[:drug_name],params[:drug_description])
+    Drug.add_drug(params[:drug_name],params[:drug_description])
     @drug =  Drug.find_by_name(params[:drug_name])  
     @prow.drug_id = @drug.id
     @prow.period_type = params[:prow][:period_type]
-    @box = BoxPart.find_by_part_num(params[:box]);
+    @box = BoxPart.find_by_part_num(params[:box]) # check it is empty !important
+    # @prow.start_time = @prow.start_time.in_time_zone("Iran");
+    # debugger
+    # zone = ActiveSupport::TimeZone.new("Iran")
+    # @time = @prow.start_time.in_time_zone(zone)
+    # @prow.start_time = @time
+    # @prow.start_time = @prow.start_time.in_time_zone(zone).to_time 
+    # @prow.start_time = @prow.start_time.change(:offset => "+0430")
+    @interval = 4.hours + 30.minutes
+    @prow.start_time = @prow.start_time - @interval
+    debugger
 
     respond_to do |format|
       if @prow.save
@@ -62,6 +72,10 @@ class ProwsController < ApplicationController
   def update
     respond_to do |format|
       if @prow.update(prow_params)
+        Drug.set_drug(@prow.drug.id,params[:drug_name],params[:drug_description])
+        @box = BoxPart.find_by_part_num(params[:box]);  # check it is empty !important
+        @box.prow_id = @prow.id
+        @box.save
         format.html { redirect_to prescription_path(:id => @prow.prescription_id) }
         format.json { render :show, status: :ok, location: @prow }
       else
@@ -77,6 +91,7 @@ class ProwsController < ApplicationController
     @prow.destroy
     respond_to do |format|
       format.html { redirect_to prescription_path(:id => @prow.prescription_id) }
+      # format.html { redirect_to prows_path }
       format.json { head :no_content }
     end
   end

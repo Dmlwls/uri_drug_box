@@ -1,0 +1,11 @@
+fa:
+  time:
+    formats:
+      default: "%y/%m/%d %H:%M:%S"
+      short: "%d %B، %H:%M"
+      long: "%A، %e %B %Y، ساعت %H:%M:%S"
+  datetime:
+    formats:
+      default: "%y/%m/%d"
+      short: "%d %B"
+      long: "%A، %e %B %Y"

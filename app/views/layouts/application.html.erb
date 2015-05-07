@@ -23,7 +23,7 @@
                         <ul class="user-actions">
                             <li><%= link_to "تغییر رمز عبور", edit_user_registration_path%></li>
                         <% if !current_user.profile.blank? %>
-                            <li><%= link_to "ویرایش مشخصات", edit_profile_path(current_user.profile.id,:title => "edit") %></li>
+                            <li><%= link_to "پروفایل شما", profile_path(current_user.profile.id) %></li>
                             <% if !current_user.relatives.blank? %>
                                 <li><%= link_to "نزدیکان شما", relatives_path , :remote => true%></li>
                             <% else %>
@@ -32,6 +32,7 @@
                             <li><%= link_to "روش یادآوری", notifications_path, :remote => true %></li>
                             <li><%= link_to "نسخه ها", prescriptions_path, :remote => true %></li>
                             <li><%= link_to "افزودن دارو", new_prow_path(:title => "new") , :remote => true %></li>
+                            <li><%= link_to "تاریخچه مصرف", consumptions_path %></li>
                         <% else %>
                             <li><%= link_to "ایجاد پروفایل", new_profile_path(:title => "new") ,:remote => true %></li>
                         <% end %>
@@ -54,9 +55,6 @@
         <div class="l-cont-side-wrap">
             <div class="l-navigation-wrap background-theme-color">
                     <div class="navbar-collapse collapse navbar-inverse-collapse">
-                        <% if user_signed_in? and !current_user.profile.blank? %>
-                            <div class="span5" style= 'color:#FFF;'><%=  (' سلام' + current_user.profile.name)%></div>
-                        <% end %>
                         <div class="navbar-collapse collapse navbar-inverse-collapse ">
                             <ul class="nav navbar-nav float">
                                 <li><%= link_to 'خرید ظرف دارو', root_path%></li>

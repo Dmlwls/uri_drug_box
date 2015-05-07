@@ -30,6 +30,9 @@
         </div>
     </div>
 </div>
+<div> <% @time = Time.now %></div>
+<div><%= I18n.l @time, format: "%y/%m/%d %H:%M:%S" %></div>
+<div><%= I18n.l @time, format: :long %></div>
 <br><br>
 <table>
   <thead>
