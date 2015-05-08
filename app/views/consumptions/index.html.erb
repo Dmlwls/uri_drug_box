@@ -16,11 +16,12 @@
                         </thead>
                         <tbody>
                           <% for i in 0..all_times.size-1 %>  
+                            <% consume(i,all_times[i][1],all_times[i][0]) %>
                             <tr>
                               <td><%= find_drug_name(all_times[i][1]) %></td>
                               <% zone = ActiveSupport::TimeZone.new("Iran") %>
                               <td><%= Date.civil(all_times[i][0].in_time_zone(zone).to_time.year, all_times[i][0].in_time_zone(zone).to_time.month,all_times[i][0].in_time_zone(zone).to_time.day).to_parsi%>&nbsp;&nbsp;&nbsp;<%= all_times[i][0].in_time_zone(zone).to_time.strftime("%M : %H") %></td>
-                              <td><%= consume(all_times[i][1],all_times[i][0]) %></td>
+                              <td><%= all_times[i][2] %></td>
                             </tr>
                           <% end %>
                         </tbody>
@@ -55,4 +56,4 @@
   </tbody>
 </table>
 
-<p><%= current_user.email %> </p>
+<% if_noti %>

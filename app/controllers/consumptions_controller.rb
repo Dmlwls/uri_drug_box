@@ -25,10 +25,10 @@ class ConsumptionsController < ApplicationController
     end
 
     @prow_arr.each do |pp|
-      @all_times[@separator] = [pp.start_time, pp.id]
+      @all_times[@separator] = [pp.start_time, pp.id, 0]
       
       for i in 1..pp.qty-1 do
-        @all_times[@separator+i] = [(@all_times[@separator+i-1][0] + pp.period.to_i.hours), pp.id]
+        @all_times[@separator+i] = [(@all_times[@separator+i-1][0] + pp.period.to_i.hours), pp.id, 0]
       end
 
       @separator = i
@@ -62,8 +62,7 @@ class ConsumptionsController < ApplicationController
   end
 
   helper_method :consume
-  
-  def consume(prow_id, time)
+  def consume(i,prow_id, time)
     @prow = Prow.find_by_id(prow_id)
     @interval = 30.minutes
     @tik = 0
@@ -71,10 +70,12 @@ class ConsumptionsController < ApplicationController
         @prow.consumptions.each do |pc|
           if time.utc - @interval <= pc.created_at and pc.created_at <= time.utc and pc.take_status.to_i == 1
             @tik = 1 
+            @all_times[i][2] = 1
             break
          
           elsif pc.created_at - @interval <= time.utc and time.utc <= pc.created_at and pc.take_status.to_i == 1
             @tik = 1 
+            @all_times[i][2] = 1
             break
           
           else
@@ -87,6 +88,21 @@ class ConsumptionsController < ApplicationController
     end
     return @tik
   end
+
+  helper_method :if_noti
+  def if_noti()
+
+    for j in 0..@all_times.size-1 
+      if @all_times[j][0].time + 30.minutes < Time.now.utc and @all_times[j][2] == 0
+        SendMail.sample_email(current_user, find_drug_name(@all_times[j][1]), @all_times[j][0] ).deliver
+      end
+    end
+  end
+
+
+
+
+
 
   helper_method :find_drug_name
   def find_drug_name(prid)
