@@ -52,7 +52,7 @@ class ProwsController < ApplicationController
     @interval = 4.hours + 30.minutes
     @prow.start_time = @prow.start_time - @interval
  
-    SendMail.sample_email(current_user).deliver
+    # SendMail.sample_email(current_user).deliver
 
     respond_to do |format|
       if @prow.save

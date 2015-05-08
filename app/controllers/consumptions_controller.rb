@@ -8,7 +8,7 @@ class ConsumptionsController < ApplicationController
   end
 
   
-   helper_method :consumption_table
+  helper_method :consumption_table
   helper_attr :all_times
   attr_accessor :all_times
   
@@ -24,10 +24,7 @@ class ConsumptionsController < ApplicationController
       end
     end
 
-
-    
     @prow_arr.each do |pp|
-       
       @all_times[@separator] = [pp.start_time, pp.id]
       
       for i in 1..pp.qty-1 do
@@ -35,7 +32,6 @@ class ConsumptionsController < ApplicationController
       end
 
       @separator = i
-
     end
 
     @all_times = @all_times.sort
