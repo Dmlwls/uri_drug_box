@@ -62,7 +62,7 @@ class ConsumptionsController < ApplicationController
   end
 
   helper_method :consume
-  def consume(i,prow_id, time)
+  def consume_vi(i,prow_id, time)
     @prow = Prow.find_by_id(prow_id)
     @interval = 30.minutes
     @tik = 0

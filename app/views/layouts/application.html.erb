@@ -13,45 +13,49 @@
 <!-- <div class="page-loader"></div> -->
     
 <!-- <div id="page" class="hfeed site"> -->
-    <div class="l-sidebar-left l-header-wrap">
-            <header id="masthead" class="m-site-header" role="banner">
-                <div class="m-site-info">
-                    <img src="/assets/drug_box/logo2.gif">
-                </div>
-                <% if user_signed_in? %>
-                    <div class="m-current-user-actions">
-                        <ul class="user-actions">
-                            <li><%= link_to "تغییر رمز عبور", edit_user_registration_path%></li>
-                        <% if !current_user.profile.blank? %>
-                            <li><%= link_to "پروفایل شما", profile_path(current_user.profile.id) %></li>
-                            <% if !current_user.relatives.blank? %>
-                                <li><%= link_to "نزدیکان شما", relatives_path , :remote => true%></li>
-                            <% else %>
-                                <li><%= link_to "به نزدیکان خود بیافزایید", new_relative_path(:title => "new") , :remote => true %></li>
-                            <% end %>
-                            <li><%= link_to "روش یادآوری", notifications_path, :remote => true %></li>
-                            <li><%= link_to "نسخه ها", prescriptions_path, :remote => true %></li>
-                            <li><%= link_to "افزودن دارو", new_prow_path(:title => "new") , :remote => true %></li>
-                            <li><%= link_to "تاریخچه مصرف", consumptions_path %></li>
+<div class="l-sidebar-left">
+    <div class = " l-header-wrap">
+        <header id="masthead" class="m-site-header" role="banner">
+            <div class="m-site-info">
+                <img src="/assets/drug_box/logo2.gif">
+            </div>
+            <% if user_signed_in? %>
+                <div class="m-current-user-actions">
+                    <ul class="user-actions">
+                        <li><%= link_to "تغییر رمز عبور", edit_user_registration_path%></li>
+                    <% if !current_user.profile.blank? %>
+                        <li><%= link_to "پروفایل شما", profile_path(current_user.profile.id) %></li>
+                        <% if !current_user.relatives.blank? %>
+                            <li><%= link_to "نزدیکان شما", relatives_path , :remote => true%></li>
                         <% else %>
-                            <li><%= link_to "ایجاد پروفایل", new_profile_path(:title => "new") ,:remote => true %></li>
+                            <li><%= link_to "به نزدیکان خود بیافزایید", new_relative_path(:title => "new") , :remote => true %></li>
                         <% end %>
-                        <% if user_signed_in? %>
-                                <li><%= link_to 'خروج از حساب کاربری', destroy_user_session_path, :method => :delete , :style=>'color:#FFF;'  %></li>
-                        <% end %>
-                        </ul>
-                    </div>
+                        <li><%= link_to "روش یادآوری", notifications_path, :remote => true %></li>
+                    <% if !current_user.prescriptions.blank? %>
+                        <li><%= link_to "افزودن دارو", new_prow_path(:title => "new") , :remote => true %></li>
+                        <li><%= link_to "نسخه ها", prescriptions_path, :remote => true %></li>
                     <% else %>
-                        <ul class="user-actions" id = "user">
-                            <li><%= link_to 'ورود', new_user_session_path , :style=>'color:#FFF;' %></li><br><br>
-                            <li><%= link_to 'ایجاد حساب کاربری', new_user_registration_path , :style=>'color:#FFF;'  %></li>
-                        </ul>
+                        <li><%= link_to "افزودن نسخه جدید", new_prescription_path(:title => "new"), :remote => true %></li>
                     <% end %>
-                
-                <!-- /#sidebar-wrapper -->
-            </header><!-- #masthead -->
-        </div><!-- header-wrap -->
-            
+                        <li><%= link_to "تاریخچه مصرف داروها", consumptions_path %></li>
+                    <% else %>
+                        <li><%= link_to "ایجاد پروفایل", new_profile_path(:title => "new") ,:remote => true %></li>
+                    <% end %>
+                    <% if user_signed_in? %>
+                            <li><%= link_to 'خروج از حساب کاربری', destroy_user_session_path, :method => :delete , :style=>'color:#FFF;'  %></li>
+                    <% end %>
+                    </ul>
+                </div>
+                <% else %>
+                    <ul class="user-actions" id = "user">
+                        <li><%= link_to 'ورود', new_user_session_path , :style=>'color:#FFF;' %></li><br><br>
+                        <li><%= link_to 'ایجاد حساب کاربری', new_user_registration_path , :style=>'color:#FFF;'  %></li>
+                    </ul>
+                <% end %>
+            </div>
+            <!-- /#sidebar-wrapper -->
+        </header><!-- #masthead -->
+    </div><!-- header-wrap -->        
         <div class="l-cont-side-wrap">
             <div class="l-navigation-wrap background-theme-color">
                     <div class="navbar-collapse collapse navbar-inverse-collapse">
@@ -62,16 +66,16 @@
                                 <li><%= link_to 'صفحه اصلی', root_path%></li>
                             </ul>
                         </div><!-- /.nav-collapse -->
-            </div><!-- /.navbar -->
-        </div><!-- l-menu-wrap -->
-    </div>
-    <div class="l-page-wrap">
-        <div class="l-content-wrap">
-            <div id="main-container" class="container">
-                    <%= yield %>
+                    </div><!-- /.navbar -->
+            </div><!-- l-menu-wrap -->
+        </div>
+        <div class="l-page-wrap">
+            <div class="l-content-wrap">
+                <div id="main-container" class="container">
+                        <%= yield %>
+                </div>
             </div>
         </div>
-    </div>
         <!-- <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">

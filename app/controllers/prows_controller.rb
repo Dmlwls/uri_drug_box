@@ -99,7 +99,7 @@ class ProwsController < ApplicationController
     end
   end
 
-  def is_near
+def is_near
     @BoxPart = BoxPart.find(params[:bp])
     @prow = Prow.find_by_id(@BoxPart.prow_id)
     @time_arr = Hash.new
@@ -109,11 +109,13 @@ class ProwsController < ApplicationController
 
     @interval = 1.hour #30.minutes
     @time_arr.each do |t|
+      debugger
       tt = Time.parse(t[1].to_s)
-      # byebug
+      
       next if Time.now.utc > tt
-      if 
+      if Consumption.consume(@prow.id, tt) == 1
         @notice = false
+        break 
       elsif tt-@interval < Time.now.utc and Time.now.utc < tt
         @notice = true
         break

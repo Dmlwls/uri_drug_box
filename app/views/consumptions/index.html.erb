@@ -16,7 +16,7 @@
                         </thead>
                         <tbody>
                           <% for i in 0..all_times.size-1 %>  
-                            <% consume(i,all_times[i][1],all_times[i][0]) %>
+                            <% consume_vi(i,all_times[i][1],all_times[i][0]) %>
                             <tr>
                               <td><%= find_drug_name(all_times[i][1]) %></td>
                               <% zone = ActiveSupport::TimeZone.new("Iran") %>
