@@ -61,7 +61,7 @@ class ConsumptionsController < ApplicationController
     render :layout => false
   end
 
-  helper_method :consume
+  helper_method :consume_vi
   def consume_vi(i,prow_id, time)
     @prow = Prow.find_by_id(prow_id)
     @interval = 30.minutes
