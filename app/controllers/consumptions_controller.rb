@@ -57,13 +57,16 @@ class ConsumptionsController < ApplicationController
 
   def remote_consumption 
     @consumption = Consumption.new
+    @BoxPart = BoxPart.find(params[:bp])
+    
     @consumption.take_status = params[:ts]
-    @consumption.prow_id = params[:prid]
+    @consumption.prow_id = @BoxPart.prow_id
     @consumption.save
     render :layout => false
   end
 
   helper_method :consume
+  
   def consume(prow_id, time)
     @prow = Prow.find_by_id(prow_id)
     @interval = 30.minutes

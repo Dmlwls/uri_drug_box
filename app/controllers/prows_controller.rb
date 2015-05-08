@@ -51,7 +51,8 @@ class ProwsController < ApplicationController
     # @prow.start_time = @prow.start_time.change(:offset => "+0430")
     @interval = 4.hours + 30.minutes
     @prow.start_time = @prow.start_time - @interval
-    debugger
+ 
+    SendMail.sample_email(current_user).deliver
 
     respond_to do |format|
       if @prow.save
@@ -76,6 +77,8 @@ class ProwsController < ApplicationController
         @box = BoxPart.find_by_part_num(params[:box]);  # check it is empty !important
         @box.prow_id = @prow.id
         @box.save
+
+
         format.html { redirect_to prescription_path(:id => @prow.prescription_id) }
         format.json { render :show, status: :ok, location: @prow }
       else
@@ -97,7 +100,8 @@ class ProwsController < ApplicationController
   end
 
   def is_near
-    @prow = Prow.find(params[:id])
+    @BoxPart = BoxPart.find(params[:bp])
+    @prow = Prow.find_by_id(@BoxPart.prow_id)
     @time_arr = Hash.new
     for i in 1..(24/@prow.period.to_i)-1 do
       @time_arr[i] = @prow.start_time + i*@prow.period.to_i.hours
@@ -108,7 +112,9 @@ class ProwsController < ApplicationController
       tt = Time.parse(t[1].to_s)
       # byebug
       next if Time.now.utc > tt
-      if tt-@interval < Time.now.utc and Time.now.utc < tt
+      if 
+        @notice = false
+      elsif tt-@interval < Time.now.utc and Time.now.utc < tt
         @notice = true
         break
       else
