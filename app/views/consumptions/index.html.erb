@@ -19,7 +19,10 @@
                             <% consume_vi(i,all_times[i][1],all_times[i][0]) %>
                             <tr>
                               <td><%= find_drug_name(all_times[i][1]) %></td>
-                              <td><%= Date.civil(all_times[i][0].to_time.year, all_times[i][0].to_time.month,all_times[i][0].to_time.day).to_parsi%>&nbsp;&nbsp;&nbsp;<%= all_times[i][0].to_time.strftime("%M : %H") %></td>
+                              <% zone = ActiveSupport::TimeZone.new("Iran") %>
+                              <% @dif = 4.hours + 30.minutes %>
+                              <% all_times[i][0] = all_times[i][0] + @dif %>
+                              <td><%= Date.civil(all_times[i][0].to_time.year, all_times[i][0].to_time.month,all_times[i][0].to_time.day).to_parsi%>&nbsp;&nbsp;&nbsp;<%= all_times[i][0].in_time_zone(zone).to_time.strftime("%M : %H") %></td>
                               <td><%= all_times[i][2] %></td>
                             </tr>
                           <% end %>
