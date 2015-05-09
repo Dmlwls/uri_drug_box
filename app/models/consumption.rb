@@ -8,7 +8,7 @@ class Consumption < ActiveRecord::Base
     @tik = 0
     if @prow.consumptions != nil
         @prow.consumptions.each do |pc|
-            debugger
+      
 	        if time.utc - @interval <= pc.created_at and pc.created_at <= time.utc and pc.take_status.to_i == 1
 	            @tik = 1 
 	            break

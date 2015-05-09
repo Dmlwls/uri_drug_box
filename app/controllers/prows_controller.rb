@@ -76,6 +76,8 @@ class ProwsController < ApplicationController
         Drug.set_drug(@prow.drug.id,params[:drug_name],params[:drug_description])
         @box = BoxPart.find_by_part_num(params[:box]);  # check it is empty !important
         @box.prow_id = @prow.id
+        @interval = 4.hours + 30.minutes
+        @prow.start_time = @prow.start_time - @interval
         @box.save
 
 
@@ -109,13 +111,13 @@ def is_near
 
     @interval = 1.hour #30.minutes
     @time_arr.each do |t|
-      debugger
+
       tt = Time.parse(t[1].to_s)
       
       next if Time.now.utc > tt
-      # if Consumption.consume(@prow.id, tt) == 1
-      #   @notice = false
-      #   break 
+      if Consumption.consume(@prow.id, tt) == 1
+        @notice = false
+        break 
       if tt-@interval < Time.now.utc and Time.now.utc < tt
         @notice = true
         break
