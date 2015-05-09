@@ -113,10 +113,10 @@ def is_near
       tt = Time.parse(t[1].to_s)
       
       next if Time.now.utc > tt
-      if Consumption.consume(@prow.id, tt) == 1
-        @notice = false
-        break 
-      elsif tt-@interval < Time.now.utc and Time.now.utc < tt
+      # if Consumption.consume(@prow.id, tt) == 1
+      #   @notice = false
+      #   break 
+      if tt-@interval < Time.now.utc and Time.now.utc < tt
         @notice = true
         break
       else
