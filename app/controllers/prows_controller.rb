@@ -71,6 +71,7 @@ class ProwsController < ApplicationController
   # PATCH/PUT /prows/1
   # PATCH/PUT /prows/1.json
   def update
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!dorost nist!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @interval = 4.hours + 30.minutes
     @prow.start_time = @prow.start_time - @interval
     respond_to do |format|
@@ -105,16 +106,16 @@ def is_near
     @BoxPart = BoxPart.find(params[:bp])
     @prow = Prow.find_by_id(@BoxPart.prow_id)
     @time_arr = Hash.new
-    for i in 1..(24/@prow.period.to_i)-1 do
+    @time_arr[1] = @prow.start_time
+    for i in 2..(24/@prow.period.to_i)-1 do
       @time_arr[i] = @prow.start_time + i*@prow.period.to_i.hours
     end
 
     @interval = 30.minutes
     @time_arr.each do |t|
-
       tt = Time.parse(t[1].to_s)
       
-      next if Time.now.utc > tt
+      next if Time.now.utc >= tt
       if Consumption.consume(@prow.id, tt) == 1
         @notice = false
         break 
@@ -124,6 +125,7 @@ def is_near
       else
         @notice = false
       end
+      
     end
 
     render :layout=>false
