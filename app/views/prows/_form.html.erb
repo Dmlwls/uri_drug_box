@@ -46,8 +46,8 @@
                 <div class="field">
                     <%= f.label 'ساعت شروع :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div class = "left">
-                    
-                    <%= f.time_select :start_time, :default => (Time.now.utc) ,:required => true %>
+                    <% @dif = 4.hours + 30.minutes %>
+                    <%= f.time_select :start_time, :default => (Time.now.utc + @dif) ,:required => true %>
                   </div>
                 </div>
 
