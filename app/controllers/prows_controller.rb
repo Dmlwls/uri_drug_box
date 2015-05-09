@@ -118,7 +118,7 @@ def is_near
       if Consumption.consume(@prow.id, tt) == 1
         @notice = false
         break 
-      if tt-@interval < Time.now.utc and Time.now.utc < tt
+      elsif tt-@interval < Time.now.utc and Time.now.utc < tt
         @notice = true
         break
       else
