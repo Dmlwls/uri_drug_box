@@ -72,12 +72,12 @@ class ProwsController < ApplicationController
   # PATCH/PUT /prows/1.json
   def update
     respond_to do |format|
+      @interval = 4.hours + 30.minutes
+      @prow.start_time = @prow.start_time - @interval
       if @prow.update(prow_params)
         Drug.set_drug(@prow.drug.id,params[:drug_name],params[:drug_description])
         @box = BoxPart.find_by_part_num(params[:box]);  # check it is empty !important
         @box.prow_id = @prow.id
-        @interval = 4.hours + 30.minutes
-        @prow.start_time = @prow.start_time - @interval
         @box.save
 
 
