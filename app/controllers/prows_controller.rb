@@ -109,7 +109,7 @@ def is_near
       @time_arr[i] = @prow.start_time + i*@prow.period.to_i.hours
     end
 
-    @interval = 1.hour #30.minutes
+    @interval = 30.minutes
     @time_arr.each do |t|
 
       tt = Time.parse(t[1].to_s)
