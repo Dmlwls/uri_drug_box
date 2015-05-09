@@ -25,10 +25,10 @@ class ConsumptionsController < ApplicationController
     end
 
     @prow_arr.each do |pp|
-      @all_times[@separator] = [pp.start_time, pp.id, 0]
+      @all_times[@separator] = [pp.start_time, pp.id, 0, 0]
       
       for i in 1..pp.qty-1 do
-        @all_times[@separator+i] = [(@all_times[@separator+i-1][0] + pp.period.to_i.hours), pp.id, 0]
+        @all_times[@separator+i] = [(@all_times[@separator+i-1][0] + pp.period.to_i.hours), pp.id, 0, 0]
       end
 
       @separator = i
@@ -93,8 +93,9 @@ class ConsumptionsController < ApplicationController
   def if_noti()
 
     for j in 0..@all_times.size-1 
-      if @all_times[j][0].time + 30.minutes < Time.now.utc and @all_times[j][2] == 0
+      if @all_times[j][0].time + 30.minutes < Time.now.utc and @all_times[j][2] == 0 and @all_times[j][3] == 0
         SendMail.sample_email(current_user, find_drug_name(@all_times[j][1]), @all_times[j][0] ).deliver
+        @all_times[j][3] =1;
       end
     end
   end
