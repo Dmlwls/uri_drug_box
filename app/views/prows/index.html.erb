@@ -9,6 +9,7 @@
       <th>Id</th>
       <th>Period</th>
       <th>qty</th>
+      <th>start_time</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= prow.id %></td>
         <td><%= prow.period %></td>
         <td><%= prow.qty %></td>
+        <td><%= prow.start_time %></td>
         <td><%= link_to 'Show', prow %></td>
         <td><%= link_to 'Edit', edit_prow_path(prow) %></td>
         <td><%= link_to 'Delete', prow, method: :delete, data: { confirm: 'آیا اطمینان دارید؟' } %></td>
