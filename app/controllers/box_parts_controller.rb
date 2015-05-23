@@ -69,6 +69,6 @@ class BoxPartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def box_part_params
-      params.require(:box_part).permit(:part_num, :prow_id)
+      params.require(:box_part).permit(:part_num, :prow_id, :user_id)
     end
 end

@@ -34,10 +34,11 @@ input,
 select,
 textarea {
 	color: #828181;
-	font-size: 20px !important;
-	/*font-size: 1.6rem;*/
+	font-size: 23px !important;
 	line-height: 1.5;
 	font-family: 'Far_Yas';
+	/*font-style: oblique;*/
+	letter-spacing: 0.6px;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -556,17 +557,17 @@ object {
 }
 
 .l-sidebar-left, .l-sidebar-right {
-	width: 350px;
-	float: left;
+	float: right;
+	/*width: 421px;*/
 	padding-bottom: 50px;
 }
 
 .l-sidebar-left .sidebar-open {
-	background-color: #ee6969;
+	background-color: #26A69A;
 	color: #fff;
 	padding: 20px;
 	position: fixed;
-	left: 0;
+	right: 0;
 	top: 120px;
 	z-index: 9999;
 	display: none;
@@ -626,10 +627,10 @@ object {
 }
 
 .l-page-wrapper {
-	width: calc(100% - 290px);
-                  width: -webkit-calc(100% - 280px);
-                  width: -moz-calc(100% - 280px);
-                  width: -o-calc(100% - 280px);
+	/*width: calc(100% - 100px);
+	width: -webkit-calc(100% - 280px);
+	width: -moz-calc(100% - 280px);
+	width: -o-calc(100% - 280px);*/
 	float: right;
 }
 
@@ -668,7 +669,7 @@ h1.t-site-title a {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: url('css/img/preloader.gif') no-repeat center center !important;
+	background: url('/assets/drug_box/preloader.gif') no-repeat center center !important;
 }
 /* User actions */
 
@@ -1109,7 +1110,7 @@ h1.t-site-title a {
 /* page content */
 
 .m-page-title {
-	width: 50%;
+	width: 100%;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -1122,7 +1123,7 @@ h1.t-site-title a {
 
 .loading {
 	min-height: 500px; 
-	background: url('css/img/ajax-loader.gif') no-repeat center center !important;
+	background: url('/assets/drug_box/ajax-loader.gif') no-repeat center center !important;
 }
 
 .l-slider-text {
@@ -1484,14 +1485,16 @@ a.read-more:hover {
 }
 
 .l-slider-wrap .flex-direction-nav a.flex-prev:before {
-	background: url('/assets/drug_box/select-arrow_before.png');
-	font-size: 4.8em;
+	/*background: url('/assets/drug_box/select-arrow_before.png') no-repeat;*/
+	content: '\e601';
+	font-size: 6em;
 	color: #f16565;
 }
 
 .l-slider-wrap .flex-direction-nav a.flex-next:before {
-	background: url('/assets/drug_box/select-arrow_after.png');
-	font-size: 4.8em;
+	/*background: url('/assets/drug_box/select-arrow_after.png') no-repeat;*/
+	content: '\e600';	
+	font-size: 6em;
 	color: #f16565;
  }
 

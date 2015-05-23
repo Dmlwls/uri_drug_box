@@ -1,34 +1,38 @@
-  <p class ="m-page-title center_table">ورود به حساب کاربری</p>
-      <div class="col-md-6 center_table">
-        <div class="panel panel-default">
-          <div class="panel-heading"></div>
-            <div class="panel-body">
-              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                
-                <div class="field">
-                  <%= f.label 'ایمیل :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= f.email_field :email, autofocus: true, autocomplete: "on" %>
-                </div>
+<div class="m-page-title"><h2>ورود به حساب کاربری</h2></div><!-- m-page-title -->
+  <section id="main-content loading">
+    <section class="wrapper">
+      <div class="row">
+          <div class="col-sm-6">
+            <div class="panel panel-default">
+              <header class="panel-heading"></header>
+                <div class="panel-body">
+                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div class="field">
+                      <%= f.label 'ایمیل :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <%= f.email_field :email, autofocus: true, autocomplete: "on" %>
+                    </div>
 
-                <div class="field">
-                  <%= f.label 'رمز عبور :' %>&nbsp;&nbsp;
-                  <%= f.password_field :password, autocomplete: "off" %>
-                </div>
+                    <div class="field">
+                      <%= f.label 'رمز عبور :' %>&nbsp;&nbsp;
+                      <%= f.password_field :password, autocomplete: "off" %>
+                    </div>
 
-                <% if devise_mapping.rememberable? -%>
-                  <div class="field">
-                    <%= f.check_box :remember_me %>
-                    <%= f.label 'مرا به خاطر بسپار' %>
-                  </div>
-                <% end -%>
+                    <% if devise_mapping.rememberable? -%>
+                      <div class="field">
+                        <%= f.check_box :remember_me %>
+                        <%= f.label 'مرا به خاطر بسپار' %>
+                      </div>
+                    <% end -%>
 
-                <div class = "center" class="actions">
-                  <%= f.submit "ورود",:class => "btn btn-default" %>
+                    <div class = "center" class="actions">
+                      <%= f.submit "ورود",:class => "btn btn-default" %>
+                    </div>
+                  <% end %>
+                  <br>
+                  <div class = "center"><%= render "devise/shared/links" %></div>
                 </div>
-              <% end %>
-              <br>
-              <div class = "center"><%= render "devise/shared/links" %><div>
+            </div>
           </div>
       </div>
-  </div>
-</div>
+    </section>
+  </section>

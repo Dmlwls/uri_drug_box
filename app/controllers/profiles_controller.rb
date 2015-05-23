@@ -10,6 +10,10 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    respond_to do |format|
+      format.html { render '_show.html.erb' }
+      format.js { 'show.js.erb'}
+    end
   end
 
   # GET /profiles/new
@@ -37,6 +41,12 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
+        BoxPart.create(:user_id => current_user.id, :part_num => 1)
+        BoxPart.create(:user_id => current_user.id, :part_num => 2)
+        BoxPart.create(:user_id => current_user.id, :part_num => 3)
+        BoxPart.create(:user_id => current_user.id, :part_num => 4)
+        
+
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else

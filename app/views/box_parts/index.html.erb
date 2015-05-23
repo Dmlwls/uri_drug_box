@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>user id</th>
       <th>Part num</th>
       <th>Prow</th>
       <th colspan="3"></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @box_parts.each do |box_part| %>
       <tr>
+        <td><%= box_part.user_id %></td>
         <td><%= box_part.part_num %></td>
         <td><%= box_part.prow_id %></td>
         <td><%= link_to 'Show', box_part %></td>

@@ -13,10 +13,10 @@ jQuery(window).load(function() {
 jQuery(document).ready(function() {
 
   //togles search field in the header
-	jQuery('.search-submit').click(function(){
-		jQuery(this).parent().toggleClass('open');
+  jQuery('.search-submit').click(function(){
+    jQuery(this).parent().toggleClass('open');
                                     jQuery('.navbar-nav').toggleClass('hide-menu');
-	});
+  });
 
 
   //opens sidebar at smaller resolutions
@@ -93,9 +93,3 @@ jQuery('a.colorbox').colorbox();
   });
 
 });
-
-
-
-
-
-

@@ -1,0 +1,2 @@
+class BuyBoxController < ApplicationController
+end

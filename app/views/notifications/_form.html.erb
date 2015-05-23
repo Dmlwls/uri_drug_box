@@ -1,55 +1,56 @@
-<div class="row">
-    <% if params[:title]=="new" %>
-      <p class ="m-page-title center_table col-md-4">افزودن یادآوری جدید</p>
-    <% else %>
-      <p class ="m-page-title center_table col-md-4">ویرایش یادآوری</p>
-    <% end %><br>
-      <div class="col-md-5 center_table">
-        <div class="panel panel-default">
-          <div class="panel-heading"></div>
-            <div class="panel-body">
-              <%= form_for(@notification) do |f| %>
-                <% if @notification.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@notification.errors.count, "error") %> prohibited this notification from being saved:</h2>
+<% if params[:title]=="new" %>
+  <div class="m-page-title"><h2>افزودن یادآوری جدید</h2></div><!-- m-page-title -->
+<% else %>
+  <div class="m-page-title"><h2>ویرایش یادآوری</h2></div><!-- m-page-title -->
+<% end %><br>
 
-                    <ul>
-                    <% @notification.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
+  <section id="main-content loading">
+    <section class="wrapper">
+      <div class="row">
+        <div class="col-sm-7">
+          <div class="panel panel-default">
+              <header class="panel-heading"></header>
+                <div class="panel-body">
+                  <%= form_for(@notification) do |f| %>
+                    <% if @notification.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(@notification.errors.count, "error") %> prohibited this notification from being saved:</h2>
+
+                        <ul>
+                        <% @notification.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
                     <% end %>
-                    </ul>
-                  </div>
-                <% end %>
+                      
+                      <div class="field">
+                        <%= f.label 'از چه راهی به شما یادآوری کنیم؟' %><br>
+                        <%= label_tag("ایمیل ")%>
+                        <%= f.radio_button :noti_type, '0', :checked => true  %>
+                        &nbsp;&nbsp;
+                        <%= label_tag("پیامک ") %>
+                        <%= f.radio_button :noti_type, '1' %>
+                      </div>
+                      
+                      <div class="field">
+                        <%= f.label 'به چه کسی اطلاع دهیم؟' %><br>
+                        <%= f.label 'نام : ' %>  
 
-                <div class="field">
-                  <%= f.label 'از چه راهی به شما یادآوری کنیم؟' %><br>
-                  <%= label_tag("ایمیل ")%>
-                  <%= f.radio_button :noti_type, '0', :checked => true  %>
-                  &nbsp;&nbsp;
-                  <%= label_tag("پیامک ") %>
-                  <%= f.radio_button :noti_type, '1' %>
-                  
-                </div>
-                
-                <div class="field">
-                  <%= f.label 'به چه کسی اطلاع دهیم؟' %><br>
-                  
-                    <%= f.label 'نام : ' %>
-
-                    
-                    <% dest_array = current_user.relatives.all.map { |dest| [dest.name, dest.id] } %>
-                    <% dest_array.unshift("خودتان")%>
-
-                    <%= f.select :destination, dest_array , :required => true%>
-                </div>
-
-                <div class = "center" class="actions">
-                  <%= f.submit (f.object.new_record? ? "افزودن" : "به روز رسانی") ,:class => "btn btn-default"%>
-                </div>
-                <div class = "center"><br><%= link_to 'بازگشت به صفحه یادآوری ها', notifications_path %></div>
-              <% end %>
+                        <% dest_array = current_user.relatives.all.map { |dest| [dest.name, dest.id] } %>
+                        <% dest_array.unshift("خودتان")%>
+                        <%= f.select :destination, dest_array , :required => true%>
+                      </div>
+                      
+                      <div class = "center" class="actions">
+                        <%= f.submit (f.object.new_record? ? "افزودن" : "به روز رسانی") ,:class => "btn btn-default"%>
+                      </div>
+                      
+                      <div class = "center"><br><%= link_to 'بازگشت به صفحه یادآوری ها',notifications_path %></div>
+                    <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </section>  

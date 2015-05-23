@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: "home#index"
 
+  get 'help/' => 'help#index'
+  get 'contact/' => 'contact#index'
+  get 'buy_box/' => 'buy_box#index'
+
   resources :consumptions
 
   resources :box_parts

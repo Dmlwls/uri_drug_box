@@ -28,9 +28,10 @@ gem 'less-rails'
 gem 'therubyracer'
 gem 'pg'
 gem 'devise'
-
+gem 'delayed_job_active_record'
 gem "mail"
 
+gem 'daemons'
 gem 'parsi-localize', '~> 0.3.3'
 gem 'rails_12factor', group: :production
 # Use ActiveModel has_secure_password

@@ -14,12 +14,12 @@
  *= require_tree .
  *= require_self
  *= require style
- *= require responsive
  *= require bootstrap-reset
  *= require flexslider
  *= require colorbox
  *= require colors-green
  *= require simple-sidebar
  *= require fonts
+ *= require responsive
  *= require drug_style
  */

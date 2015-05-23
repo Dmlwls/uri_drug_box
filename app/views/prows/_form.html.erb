@@ -1,82 +1,107 @@
-<div class="row">
   <% if params[:title]=="new" %>
-      <p class ="m-page-title center_table">افزودن داروی جدید</p>
-  <% else %>
-      <p class ="m-page-title center_table">ویرایش دارو</p>
+      <div class="m-page-title"><h2>افزودن داروی جدید</h2></div>
+  <% elsif @prow != nil %>
+      <div class="m-page-title"><h2>ویرایش دارو</h2></div>
   <% end %>
-    <div class="col-md-6 center_table">
-      <%= form_for(@prow) do |f| %>
-        <div class="panel panel-default">
-          <div class="panel-heading"></div>
-            <div class="panel-body">
-                <% if @prow.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@prow.errors.count, "error") %> prohibited this prow from being saved:</h2>
+  <section id="main-content loading">
+    <section class="wrapper">
+      <div class="row">
+          <div class="col-sm-8">
+            <%= form_for(@prow) do |f| %>
+              <div class="panel panel-default">
+                <div class="panel-heading"></div>
+                  <div class="panel-body">
+                      <% if @prow.errors.any? %>
+                        <div id="error_explanation">
+                       
+                          <h2><%= pluralize(@prow.errors.count, "error") %> prohibited this prow from being saved:</h2>
 
-                    <ul>
-                    <% @prow.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
+                          <ul>
+                          <% @prow.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                          <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+                      <% if params[:prid] == nil %>
+                        <div class="field">
+                          <%= f.label 'عنوان نسخه :' %>&nbsp;&nbsp;&nbsp;
+                          <%= f.select :prescription_id, current_user.prescriptions.all.collect{|p| [p.doctor_name, p.id]} , :required => true%>
+                        </div>
+                      <% else %>
+                        <% hidden_field_tag :pridset , :value => params[:prid].to_i%>
+                        <%= f.hidden_field :prescription_id , :value => params[:prid].to_i %>
+                        <div class="field">
+                          <%= f.label 'عنوان نسخه :' %>&nbsp;&nbsp;&nbsp;
+                          <%= Prescription.find_by_id(params[:prid]).doctor_name %> 
+                        </div>
+                      <% end %>
+                      <div class="field">
+                        <%= f.label 'نام دارو :'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <% if params[:title]=="edit" || @prow.drug_id != nil%>
+                          <% find_drug(@prow.drug_id) %>
+                          <%= text_field_tag "drug_name"  , (drug_nm) , :required => true %>
+                        <% else %>
+                          <%=text_field_tag "drug_name" ,nil , :required => true%>
+                        <% end %>
+                      </div>
+                      <div class="field">
+                          <%= f.label 'توضیحات دارو :'%>&nbsp;
+                          <% if params[:title]=="edit" || @prow.drug_id != nil%>
+                              <%= text_field_tag "drug_description"  , (drug_desc)%>
+                          <% else %>
+                              <%= text_field_tag "drug_description" %>
+                          <% end %>
+                      </div>
+
+                      <div class="field">
+                          <%= f.label 'ساعت شروع :' %>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class = "left">
+                            <% @dif = 4.hours + 30.minutes %>
+                              <%= f.time_select :start_time, :default => (Time.now.utc + @dif) ,:required => true %>
+                          </div>
+                      </div>
+
+
+                      <div class="field">
+                        <%= f.label 'دوره :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <% if params[:title] == "edit" || @prow.period_type != nil || @prow.period != nil %>
+                          <% @per =  Prow.convert_to_show_period(@prow) %>
+                          هر &nbsp;<%= f.number_field :period , :value => @per , min:1 , :required => true , :class => 'number_input' %>&nbsp;
+                          <%= f.select :period_type , options_for_select([["ساعت", "ساعت"],["روز", "روز"],["هفته", "هفته"]] , @prow.period_type) %>
+                          <% else %>
+                          هر &nbsp;<%= f.number_field :period , min:1 , :required => true , :class => 'number_input' %>&nbsp;
+                          <%= f.select :period_type , options_for_select([["ساعت", "ساعت"],["روز", "روز"],["هفته", "هفته"]]) %>
+                          <% end %>
+                      </div>
+                      <div class="field">
+                        <%= f.label 'تعداد :'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <%= f.number_field :qty , min: 1, :required => true , :class => 'number_input' %>
+                      </div>
+                      <div class="field">
+                        <%= label_tag 'شماره ظرف :'%>&nbsp;&nbsp;&nbsp;
+                        <% if params[:title]=="edit" || @prow.id != nil%>
+                            <% @bp = find_box_part %>
+                            <%= number_field_tag :box , @bp.part_num , min: 1, max: 4, :required => true , :class => 'number_input'%>
+                        <% else %>
+                            <%= number_field_tag :box ,nil, min: 1, max: 4, :required => true , :class => 'number_input' %>
+                        <% end %>
+                        <p id="notice" style="color:red"><%= box_err %></p>
+                        <% box_err = nil %>
+      
+                      </div>
+                      <div class = "center" class="actions">
+                        <%= f.submit (f.object.new_record? ? "افزودن" : "به روز رسانی") ,:class => "btn btn-default"%>
+                      </div><br>
+                      <% if params[:prid] == nil %>
+                        <div class = "center"><%= link_to 'بازگشت به صفحه ی اصلی', root_path %></div>
+                      <% else %>
+                        <div class = "center"><%= link_to 'بازگشت به صفحه ی نسخه', prescription_path(params[:prid]) %></div>
+                      <% end %>
                     <% end %>
-                    </ul>
-                  </div>
-                <% end %>
-                <br>
-                <% if params[:prid] == nil %>
-                  <div class="field">
-                    <%= f.label 'عنوان نسخه :' %>&nbsp;&nbsp;&nbsp;
-                    <%= f.select :prescription_id, current_user.prescriptions.all.collect{|p| [p.doctor_name, p.id]} , :required => true%>
-                  </div>
-                <% else %>
-                  <% hidden_field_tag :pridset , :value => params[:prid].to_i%>
-                  <%= f.hidden_field :prescription_id , :value => params[:prid].to_i %>
-                  <div class="field">
-                    <%= f.label 'عنوان نسخه :' %>&nbsp;&nbsp;&nbsp;
-                    <%= Prescription.find_by_id(params[:prid]).doctor_name %> 
-                  </div>
-                <% end %>
-                <div class="field">
-                    <%= f.label 'نام دارو :'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <%=text_field_tag "drug_name" ,nil , :required => true%>
                 </div>
-                <div class="field">
-                    <%= f.label 'توضیحات دارو :'%>&nbsp;
-                    <%= text_field_tag "drug_description" %>
-                </div>
-
-                <div class="field">
-                    <%= f.label 'ساعت شروع :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <div class = "left">
-                    <% @dif = 4.hours + 30.minutes %>
-                    <%= f.time_select :start_time, :default => (Time.now.utc + @dif) ,:required => true %>
-                  </div>
-                </div>
-
-
-                <div class="field">
-                  <%= f.label 'دوره :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  هر <%= f.number_field :period  ,min:1, :required => true  %>
-                  <%= f.select :period_type , options_for_select([["ساعت", "ساعت"],["روز", "روز"],["هفته", "هفته"],["ماه", "ماه"]]) %>
-                
-                </div>
-                <div class="field">
-                  <%= f.label 'تعداد :'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= f.number_field :qty , min: 1, :required => true  %>
-                </div>
-                <div class="field">
-                  <%= label_tag 'شماره ظرف :'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= number_field_tag :box , input_html: { min: 1, max: 4, :required => true } %>
-                </div>
-                <div class = "center" class="actions">
-                  <%= f.submit (f.object.new_record? ? "افزودن" : "به روز رسانی") ,:class => "btn btn-default"%>
-                </div><br>
-                <% if params[:prid] == nil %>
-                  <div class = "center"><%= link_to 'بازگشت به صفحه ی اصلی', root_path %></div>
-                <% else %>
-                  <div class = "center"><%= link_to 'بازگشت به صفحه ی نسخه', prescription_path(params[:prid]) %></div>
-                <% end %>
-              <% end %>
+              </div>
           </div>
         </div>
-    </div>
-  </div>
-</div>
+      </section>
+    </section>

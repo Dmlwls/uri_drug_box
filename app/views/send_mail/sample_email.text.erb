@@ -1,6 +1,10 @@
-
-سلام <%= @user.profile.name %> 
-شما داروی <%= @drug_name %> خود را در زمان <%= @time %> فراموش کرده اید.
+سلام <%= @user.profile.name %>
+:شما داروی خود را با ویژگی های زیر مصرف نکرده اید
+      نام دارو: <%= @drug_name %>
+      <% if @drug_description != "" %>
+        ویژگی های دارو: <%= @drug_description %>
+      <% end %>
+      زمان مصرف: روز <%= @time.to_parsi.year%>/<%= @time.to_parsi.month%>/<%= @time.to_parsi.day%> ساعت <%= @time.to_time.to_parsi.hour%>:<%= @time.to_time.to_parsi.minute %>
 
     
   

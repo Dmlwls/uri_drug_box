@@ -44,7 +44,7 @@ class NotificationsController < ApplicationController
 
     respond_to do |format|
       if @notification.save
-        format.html { redirect_to notifications_url, notice: 'Notification was successfully created.' }
+        format.html { redirect_to notifications_path, notice: 'Notification was successfully created.' }
         format.json { render :show, status: :created, location: @notification }
       else
         format.html { render :new }

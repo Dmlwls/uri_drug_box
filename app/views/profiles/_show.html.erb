@@ -1,0 +1,22 @@
+<div class="m-page-title"><h2>پروفایل شما</h2></div><!-- m-page-title -->
+  <section id="main-content loading">
+	    <section class="wrapper">
+	      <div class="row">
+	          <div class="col-sm-10">
+			    <blockquote>
+						<strong>نام :</strong>
+					  	<%= @profile.name %><br><br>
+					  	<strong>شماره تماس :</strong>
+					  	<%= @profile.phone_number %>
+					  	<br><br>
+					<%= link_to 'ویرایش پروفایل', edit_profile_path(@profile,:title => "edit") , :remote => true %>  &nbsp;|&nbsp;
+					<%= link_to 'بازگشت به صفحه ی اصلی', root_path %>
+					<br><br>
+					<% if current_user.relatives.blank? %>
+						<strong><%= link_to "نزدیکان خود را به ما معرفی کنید تا بتوانیم به ایشان اطلاع دهیم", new_relative_path , :id => "relative_link_in_profile"%></strong>
+					<% end %>
+			    </blockquote>	
+			</div>
+		</div>
+	</section>
+</section>

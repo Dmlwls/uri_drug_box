@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
-  <body>
-    <h1>سلام <%= @user.profile.name %> </h1>
-    <p>
-      شما داروی <%= @drug_name %> خود را در زمان <%= @time %> فراموش کرده اید.
+  <body style="direction:rtl">
+    <h1>سلام <%= @user.profile.name %></h1>
+    <p style="text_align:right">
+      :شما داروی خود را با ویژگی های زیر مصرف نکرده اید&nbsp;<br>
+      نام دارو: <%= @drug_name %> <br>
+      <% if @drug_description != "" %>
+        ویژگی های دارو: <%= @drug_description %><br>
+      <% end %>
+      زمان مصرف: روز <%= @time.to_parsi.year%>/<%= @time.to_parsi.month%>/<%= @time.to_parsi.day%> ساعت <%= @time.to_time.to_parsi.hour%>:<%= @time.to_time.to_parsi.minute %>
     </p>
   </body>
 </html>

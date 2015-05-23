@@ -72,6 +72,12 @@ class PrescriptionsController < ApplicationController
   # DELETE /prescriptions/1
   # DELETE /prescriptions/1.json
   def destroy
+
+    @prescription.prows.each do |pr|
+      pr.destroy
+    end
+
+
     @prescription.destroy
     respond_to do |format|
       format.html { redirect_to prescriptions_url, notice: 'Prescription was successfully destroyed.' }

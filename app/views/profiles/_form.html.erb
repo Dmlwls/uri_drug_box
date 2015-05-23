@@ -1,40 +1,44 @@
-  <div class = "row">
-      <% if params[:title]=="new" %>
-        <p class ="m-page-title center_table">افزودن مشخصات</p>
-      <% else %>
-        <p class ="m-page-title center_table">ویرایش مشخصات</p>
-      <% end %>
-    <div class="col-md-6 center_table">
-        <div class="panel panel-default">
-          <div class="panel-heading"></div>
-            <div class="panel-body">
-              <%= form_for(@profile) do |f| %>
-                <% if @profile.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+<% if params[:title]=="new" %>
+  <div class="m-page-title"><h2>افزودن مشخصات</h2></div>
+<% else %>
+  <div class="m-page-title"><h2>ویرایش مشخصات</h2></div>
+<% end %>
+  <section id="main-content loading">
+    <section class="wrapper">
+      <div class="row">
+          <div class="col-sm-7">
+            <div class="panel panel-default">
+                <header class="panel-heading"></header>
+                  <div class="panel-body">
+                    <%= form_for(@profile) do |f| %>
+                      <% if @profile.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
 
-                    <ul>
-                    <% @profile.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
+                          <ul>
+                          <% @profile.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                          <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+
+                      <div class="field">
+                        <%= f.label 'نام :' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <%= f.text_field :name , :required => true %>
+                      </div>
+                      <div class="field">
+                        <%= f.label 'شماره تماس :' %>&nbsp;
+                        <%= f.text_field :phone_number , :required => true%>
+                      </div> 
+                      <div class="center">
+                        <%= f.submit (f.object.new_record? ? "ایجاد پروفایل" : "به روز رسانی پروفایل") ,:class => "btn btn-default"%>
+                      </div><br>
+                      <div class="center"><%= link_to 'بازگشت به صفحه اصلی', root_path %></div>
                     <% end %>
-                    </ul>
                   </div>
-                <% end %>
-
-                <div class="field">
-                  <%= f.label 'نام:' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= f.text_field :name , :required => true %>
                 </div>
-                <div class="field">
-                  <%= f.label 'شماره تماس:' %>&nbsp;
-                  <%= f.text_field :phone_number , :required => true%>
-                </div> 
-                <div class="center">
-                  <%= f.submit (f.object.new_record? ? "ایجاد پروفایل" : "به روز رسانی پروفایل") ,:class => "btn btn-default"%>
-                </div><br>
-                <div class="center"><%= link_to 'بازگشت به صفحه اصلی', root_path %></div>
-              <% end %>
-            </div>
+              </div>
           </div>
-        </div>
-    </div>
+      </section>
+    </section>

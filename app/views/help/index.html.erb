@@ -1,0 +1,48 @@
+<div class="m-page-title"><h2>راهنمای سایت</h2></div><!-- m-page-title -->
+  <section id="main-content loading">
+	    <section class="wrapper">
+	      <div class="row">
+	          <div class="col-sm-12">
+			    <blockquote>
+					در ابتدا در سایت 
+					<b><%= link_to 'عضو شوید', new_user_registration_path , :style => "
+					color:#26A69A;" , :remote => true %></b> و 
+					<% if current_user != nil && current_user.profile == nil %>
+						<b><%= link_to 'پروفایل', new_profile_path , :style => "color:#26A69A;" , :remote => true %></b>
+					<% else %>
+						<b><%= link_to 'پروفایل', profile_path(current_user.profile.id) , :style => "color:#26A69A;" , :remote => true %></b>
+					<% end %>  خود و 
+					<% if current_user != nil && current_user.relatives == nil %>
+						<b><%= link_to 'اطلاعات نزدیکانتان', new_relative_path , :style => "color:#26A69A;" , :remote => true %></b>
+						<% else %>
+						<b><%= link_to 'اطلاعات نزدیکانتان', relatives_path , :style => "color:#26A69A;" , :remote => true %>
+						<% end %>
+						 را تکمیل نمایید.<br><br>
+					<img width="535" height="326" src="/assets/drug_box/new_profile.png" class="attachment-shop_single wp-post-image" alt="T_7_front" title="T_7_front"><br><br><br>
+					
+					<img width="490" height="406" src="/assets/drug_box/new_relative.png" class="attachment-shop_single wp-post-image" alt="T_7_front" title="T_7_front"><br><br>
+					در مرحله بعد 
+					<% if current_user != nil && current_user.prescriptions == nil %>
+						<b><%= link_to 'نسخه هایتان', new_prescription_path , :style => "color:#26A69A;" , :remote => true %></b>
+					<% else %>
+							<b><%= link_to 'نسخه هایتان', prescriptions_path , :style => "color:#26A69A;" , :remote => true %></b>
+					<% end %> را در سایت ایجاد کنید و 
+						<% if current_user != nil && current_user.prescriptions != nil %>
+						<b><%= link_to 'داروهای خود', new_prow_path , :style => "color:#26A69A;" , :remote => true %></b>
+						<% end %> را به آن اضافه کنید. <br><br>
+					براساس زمان شروع مصرف و دوره ی زمانی که شما برای هر دارو وارد می کنید در زمان مصرف دارو چراغ مربوط به این دارو روشن می شود.<br><br>
+					
+					<img width="603" height="534" src="/assets/drug_box/new_prow.png" class="attachment-shop_single wp-post-image" alt="T_7_front" title="T_7_front"><br><br>
+					شما می توانید داروهای خودتان را در صفحه ی <b><%= link_to 'نسخه ها', prescriptions_path , :style => "color:#26A69A;" , :remote => true %></b> پس از انتخاب گزینه ی نمایش نسخه ببینید
+					<img width="752" height="311" src="/assets/drug_box/prescription.png" class="attachment-shop_single wp-post-image" alt="T_7_front" title="T_7_front"><br><br>
+					اگر می خواهید در صورتی که دارو را مصرف نکردید به شما یا نزدیکانتان یادآوری شود در قسمت <b><%= link_to 'روش یادآوری', notifications_path , :style => "color:#26A69A;" , :remote => true %></b> شخص مورد نظر و روش یادآوری را انتخاب کنید.<br><br>
+					
+					<img width="539" height="403" src="/assets/drug_box/new_noti.png" class="attachment-shop_single wp-post-image" alt="T_7_front" title="T_7_front"><br><br>
+					شما می توانید در قسمت <b><%= link_to 'تاریخچه مصرف دارو', consumptions_path , :style => "color:#26A69A;" , :remote => true %></b> زمان های مصرف داروهایتان را ببینید.<br><br>
+					
+					<img width="757" height="398" src="/assets/drug_box/consumption.png" class="attachment-shop_single wp-post-image" alt="T_7_front" title="T_7_front"><br>
+			    </blockquote>	
+			</div>
+		</div>
+	</section>
+</section>
